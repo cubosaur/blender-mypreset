@@ -58,7 +58,16 @@ at the cost of being the easiest bindings in the setup to shadow.
 `view3d.toggle_xray` needs a View3D space, so a Window binding would only ever
 work in the viewport anyway. And the 3D View keymap covers every mode at once,
 which is what "X-Ray in both Object and Edit Mode" needs — one binding, not one
-per mode keymap. The stock `Alt+Z` binding stays in place beside it.
+per mode keymap. `Ctrl+3` is confirmed working in Object Mode and Edit Mode.
+
+**`Alt+Z` does not toggle X-Ray on this setup, and that is accepted.** The stock
+binding is untouched and nothing in the keymap explains it: `Alt+Z` →
+`view3d.toggle_xray` is the only `Alt+Z` in the whole user keyconfig, it is active,
+and no higher-priority keymap claims the key. So the cause is not keymap priority.
+The likely culprit is **X-Ray Selection Tools**, which is enabled in the GUI but
+fails to register in a `--background` run, making it the one component the
+diagnostic cannot see. Not chased further, because `Ctrl+3` covers the need. If
+`Alt+Z` ever matters, start by disabling that add-on and re-testing.
 
 ## 2. Moved off their default key
 

@@ -67,7 +67,7 @@ Changes I made by hand. `~` marks a binding moved off its default key.
 | --- | --- | --- |
 | `F` | Frame Selected | ~ `Numpad .` |
 | `Ctrl+1` | Isolate / Local View, without reframing | ~ `Numpad /` |
-| `Ctrl+3` | Toggle X-Ray | Added, `Alt+Z` kept |
+| `Ctrl+3` | Toggle X-Ray | Added |
 
 ### Object Mode
 
