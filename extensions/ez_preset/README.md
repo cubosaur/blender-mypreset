@@ -22,7 +22,7 @@ Or drop the folder into:
 | | |
 | --- | --- |
 | **Preferences** | 15 values, plus 2 keyconfig preferences and 1 add-on preference |
-| **Keymap** | 5 bindings added, 7 moved, 13 switched off, plus 6 expand bindings relocated to Alt |
+| **Keymap** | 6 bindings added, 7 moved, 13 switched off, plus 6 expand bindings relocated to Alt |
 | **Theme** | Loads Professional, if that theme extension is installed |
 | **Feature** | `Ctrl+1` isolate in Edit Mode and the UV Editor; expand moves to `Alt+1/2/3` in both |
 
@@ -77,7 +77,7 @@ this at the top; do not reorder those calls.
 blender --background --factory-startup --python ../../tools/test_ez_preset.py
 ```
 
-54 assertions: profile apply, every keymap edit in both the Mesh and UV Editor
+64 assertions: profile apply, every keymap edit in both the Mesh and UV Editor
 keymaps, the isolate round trip including preservation of hand-hidden geometry,
 the empty-selection refusal, and a full restore back to factory.
 

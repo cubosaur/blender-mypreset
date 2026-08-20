@@ -20,34 +20,45 @@ _registered = False
 _applied_this_session = False
 
 
-def _apply_once():
-    """Apply the profile the first time only, if the user asked for that.
+def _apply_profile_once():
+    """Do the full apply the first time only. Returns True if it ran.
 
     Applying writes to saved Preferences, so doing it on every load would
-    silently undo any later hand tweak. ``applied`` is stored in the add-on
-    preferences, which means it persists per install and the first launch on a
-    new machine is what triggers the apply.
+    silently undo any later hand tweak. ``applied`` lives in the add-on
+    preferences, so it persists per install and the first launch on a new
+    machine is what triggers the apply.
     """
     global _applied_this_session
-    if _applied_this_session:
-        return
     addon_prefs = prefs.get_prefs()
     if addon_prefs is None:
-        return
+        return False
+    if _applied_this_session:
+        return False
+    if not (addon_prefs.apply_on_enable and not addon_prefs.applied):
+        return False
     _applied_this_session = True
-    if addon_prefs.apply_on_enable and not addon_prefs.applied:
-        prefs.apply_profile()
-        addon_prefs.applied = True
-    else:
-        # The profile is already adopted, so only this add-on's own bindings
-        # need to go back in: they live in the add-on keyconfig, which Blender
-        # rebuilds from scratch every launch.
-        apply_keymaps.apply_keymaps()
+    prefs.apply_profile()
+    addon_prefs.applied = True
+    return True
+
+
+def _sync():
+    """Put our keymap state in place. Idempotent, and safe to call twice.
+
+    Must stay callable more than once per launch. When Blender enables add-ons
+    during startup the user keyconfig can still be empty at ``register()`` time,
+    and a keymap edit against an empty keyconfig silently does nothing. The
+    timer below calls this again once the UI is up, which is the pass that
+    actually lands the edits on a normal launch.
+    """
+    if _apply_profile_once():
+        return
+    apply_keymaps.apply_keymaps()
 
 
 def _deferred(*_args):
     if _registered:
-        _apply_once()
+        _sync()
     return None
 
 
@@ -61,7 +72,7 @@ def register():
     _registered = True
     _applied_this_session = False
 
-    _apply_once()
+    _sync()
 
     if not bpy.app.background:
         bpy.app.timers.register(_deferred, first_interval=0.25)

@@ -105,6 +105,19 @@ check("Window  D -> affect only origins",
 check("Mesh  Q -> xray box select",
       find("Mesh", "wm.tool_set_by_id", type="Q",
            properties={"name": "mesh_tool.select_box_xray"}) is not None)
+check("3D View  Ctrl+3 -> toggle_xray",
+      find("3D View", "view3d.toggle_xray", type="THREE", ctrl=True,
+           alt=False, shift=False) is not None)
+check("3D View  Alt+Z toggle_xray still present",
+      find("3D View", "view3d.toggle_xray", type="Z", alt=True) is not None)
+# Ctrl+3 must not be shadowed by a mode keymap in either mode.
+for km_name in ("Mesh", "Object Mode", "Sculpt"):
+    km = user.keymaps.get(km_name)
+    live = [k for k in km.keymap_items
+            if k.type == "THREE" and k.ctrl and not (k.alt or k.shift)
+            and k.active]
+    check("%s has no live Ctrl+3 to shadow X-ray" % km_name, not live,
+          [k.idname for k in live])
 
 mesh_km = user.keymaps.get("Mesh")
 expand = [k for k in mesh_km.keymap_items
@@ -272,6 +285,30 @@ for km_name in ("Mesh", "UV Editor"):
 check("Window Ctrl+2 add removed",
       find("Window", "wm.context_toggle", type="TWO", ctrl=True,
            properties={"data_path": "space_data.overlay.show_wireframes"}) is None)
+check("3D View Ctrl+3 xray add removed",
+      find("3D View", "view3d.toggle_xray", type="THREE", ctrl=True) is None)
+check("3D View Alt+Z xray survived the restore",
+      find("3D View", "view3d.toggle_xray", type="Z", alt=True) is not None)
+
+print()
+print("=" * 78)
+print("6. _sync() stays callable more than once per launch")
+print("=" * 78)
+# Regression guard. _sync() used to be gated by a once-per-session flag set
+# during register(), so the deferred timer pass returned immediately. On a real
+# launch the user keyconfig can still be empty at register() time, and that made
+# the keymap edits silently never land.
+ez_preset._applied_this_session = False
+ez_preset._sync()
+check("first _sync() applies the profile keymaps",
+      find("3D View", "view3d.toggle_xray", type="THREE", ctrl=True) is not None)
+
+ezprefs.restore_profile()
+check("restore removed Ctrl+3 again",
+      find("3D View", "view3d.toggle_xray", type="THREE", ctrl=True) is None)
+ez_preset._sync()
+check("_sync() re-applies after a restore, not a no-op",
+      find("3D View", "view3d.toggle_xray", type="THREE", ctrl=True) is not None)
 
 ez_preset.unregister()
 check("unregister() completed", True)

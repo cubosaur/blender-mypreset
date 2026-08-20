@@ -6,7 +6,7 @@ owns each change** — because most of the raw diff is not hand work.
 
 | Owner | Items | Where it lives |
 | --- | --- | --- |
-| Me, by hand | **25** | [`extensions/ez_preset/profile.py`](../extensions/ez_preset/profile.py) |
+| Me, by hand | **26** | [`extensions/ez_preset/profile.py`](../extensions/ez_preset/profile.py) |
 | Easy Transform Axis Switch | 18 | The add-on re-applies these every load |
 | Remember Last Used Axis | 19 | The add-on re-applies these every load |
 
@@ -49,9 +49,16 @@ this setup:
 | Window | `4` | `wm.context_menu_enum` | Viewport colour-type menu |
 | Object Mode | `Q` | `wm.tool_set_by_id` | X-Ray box select tool |
 | Mesh | `Q` | `wm.tool_set_by_id` | X-Ray box select tool |
+| 3D View | `Ctrl+3` | `view3d.toggle_xray` | Toggle X-Ray |
 
 `D`, `Ctrl+2` and `4` sit in the **Window** keymap so they work in every editor,
 at the cost of being the easiest bindings in the setup to shadow.
+
+`Ctrl+3` sits in the **3D View** keymap instead, for two reasons.
+`view3d.toggle_xray` needs a View3D space, so a Window binding would only ever
+work in the viewport anyway. And the 3D View keymap covers every mode at once,
+which is what "X-Ray in both Object and Edit Mode" needs — one binding, not one
+per mode keymap. The stock `Alt+Z` binding stays in place beside it.
 
 ## 2. Moved off their default key
 
@@ -82,6 +89,9 @@ ladder is unwanted. Do not "complete" the row by binding `2`.
 | Object Mode | `Ctrl+3/4/5` | subdivision levels 3–5 | Redundant after the move to `1`/`3` |
 | Sculpt | `Ctrl+0…5` | subdivision levels 0–5 | Frees `Ctrl+1` and `Ctrl+2` in Sculpt |
 | Sculpt | `Alt+1`, `Alt+2` | relative subdivision | Same |
+
+Switching off the `Ctrl+3` rows in Object Mode, Mesh, UV Editor and Sculpt is what
+lets the single `3D View` binding for X-Ray reach every mode.
 
 **On losing `F` for Make Edge/Face.** This is the sharpest trade in the setup.
 `F` is one of Blender's most-used modelling keys, and it is gone. It buys a single

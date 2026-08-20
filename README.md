@@ -67,6 +67,7 @@ Changes I made by hand. `~` marks a binding moved off its default key.
 | --- | --- | --- |
 | `F` | Frame Selected | ~ `Numpad .` |
 | `Ctrl+1` | Isolate / Local View, without reframing | ~ `Numpad /` |
+| `Ctrl+3` | Toggle X-Ray | Added, `Alt+Z` kept |
 
 ### Object Mode
 
@@ -163,7 +164,7 @@ blender --background --python tools/dump_config.py
 ```
 
 `tools/` also holds `diff_keymap.py`, `diff_prefs.py`, `diag_hotkey.py`, and
-`test_ez_preset.py` — 54 assertions covering the profile round-trip and the
+`test_ez_preset.py` — 64 assertions covering the profile round-trip and the
 isolate toggle:
 
 ```bash

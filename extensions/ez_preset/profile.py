@@ -111,6 +111,12 @@ KEYMAP_ADD = (
     dict(keymap="Mesh", idname="wm.tool_set_by_id", type="Q",
          properties={"name": "mesh_tool.select_box_xray"},
          note="Q picks the X-Ray box select tool"),
+    # In the 3D View keymap, not Window, so it exists only where it can work:
+    # view3d.toggle_xray needs a View3D space. The 3D View keymap also covers
+    # every mode at once, which is what "works in Object and Edit Mode" needs.
+    # The stock Alt+Z binding is left in place alongside it.
+    dict(keymap="3D View", idname="view3d.toggle_xray", type="THREE", ctrl=True,
+         note="Ctrl+3 toggles X-ray, in every mode"),
 )
 
 # Default bindings moved to another key, or given different properties.

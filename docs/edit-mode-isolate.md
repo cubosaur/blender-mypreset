@@ -123,6 +123,6 @@ hidden:
 blender --background --factory-startup --python tools/test_ez_preset.py
 ```
 
-54 assertions, covering the isolate round trip, the empty-selection refusal, the
+64 assertions, covering the isolate round trip, the empty-selection refusal, the
 Object Mode poll, the Mesh and UV Editor bindings, and the full profile
 apply/restore cycle.

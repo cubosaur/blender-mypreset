@@ -45,18 +45,26 @@ CONTEXTS = {
 
 
 def enable_addon():
-    """Enable the add-on so the diagnosis reflects the real, applied state."""
+    """Enable the add-on, then apply, so the diagnosis matches the GUI.
+
+    The apply has to run *after* ``keyconfig_init()`` and it has to run even when
+    the add-on is already enabled. In background mode Blender enables add-ons
+    before the keymaps exist, so the add-on's own startup pass finds an empty
+    user keyconfig and lands nothing. Skipping the apply here reports bindings as
+    missing when they are merely not applied yet.
+    """
     bpy.utils.keyconfig_init()
-    if MODULE in {a.module for a in bpy.context.preferences.addons}:
-        return
     try:
-        bpy.ops.preferences.addon_enable(module=MODULE)
+        if MODULE not in {a.module for a in bpy.context.preferences.addons}:
+            bpy.ops.preferences.addon_enable(module=MODULE)
         ezprefs = sys.modules.get(MODULE + ".prefs")
-        if ezprefs is not None:
-            notes = ezprefs.apply_profile()
-            print("apply notes:", notes or "none")
+        if ezprefs is None:
+            print("%s enabled but its prefs module is missing" % MODULE)
+            return
+        notes = ezprefs.apply_profile()
+        print("apply notes:", notes or "none")
     except Exception as exc:
-        print("could not enable %s (%s); showing unmodified state" % (MODULE, exc))
+        print("could not apply %s (%s); showing unmodified state" % (MODULE, exc))
 
 
 def describe_properties(kmi):
