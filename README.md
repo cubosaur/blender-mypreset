@@ -13,9 +13,8 @@ Two things live here:
    theme, and adds one thing Blender lacks: `Ctrl+1` isolating the selection in
    Edit Mode.
 
-Captured from **Blender 5.1.2** on Windows 11. Reasoning behind individual choices
-is being added over time; for now the tables say *what*, and the notes say *why*
-where the why is not obvious.
+Captured from **Blender 5.1.2** on Windows 11. The tables say *what*.
+[docs/why.md](docs/why.md) is where the *why* goes, one section per change.
 
 ---
 
@@ -29,6 +28,8 @@ where the why is not obvious.
 | [docs/extensions.md](docs/extensions.md) | Add-ons, including three of my own |
 | [docs/theme.md](docs/theme.md) | Theme, and one migration artifact |
 | [docs/edit-mode-isolate.md](docs/edit-mode-isolate.md) | Design notes on the new `Ctrl+1` |
+| [docs/why.md](docs/why.md) | **The reasoning behind each change** |
+| [startup-files/](startup-files) | Saved startup `.blend` files |
 | [reference/](reference) | Raw generated diffs, for grepping |
 
 ---
@@ -148,10 +149,11 @@ Then in Blender: **Edit ▸ Preferences ▸ Add-ons ▸ Install from Disk**, poi
 enable. **Edit ▸ Preferences ▸ Add-ons ▸ EZ Preset** has an Apply / Restore pair
 and reports anything it could not do on this machine.
 
-Not covered by the add-on, because an add-on cannot install other add-ons:
-the four companion extensions in [docs/extensions.md](docs/extensions.md), and the
-startup file in [docs/startup-file.md](docs/startup-file.md). The add-on lists
-whichever companions are missing so it is obvious what is left to do.
+Two things the add-on does not install. The four companion extensions in
+[docs/extensions.md](docs/extensions.md), because an add-on cannot install other
+add-ons — it lists whichever are missing so it is obvious what is left. And the
+startup file in [startup-files/](startup-files), because replacing it on enable
+would overwrite user data silently.
 
 ---
 
@@ -161,6 +163,13 @@ Everything in `docs/` came out of these, not out of clicking through Preferences
 
 ```bash
 blender --background --python tools/dump_config.py
+```
+
+`tools/gen_why.py` refreshes [docs/why.md](docs/why.md) from the profile, keeping
+whatever reasoning is already written and adding stubs for new entries:
+
+```bash
+python tools/gen_why.py
 ```
 
 `tools/` also holds `diff_keymap.py`, `diff_prefs.py`, `diag_hotkey.py`, and

@@ -89,7 +89,11 @@ architectural work matters more than scrubbing.
 Units are stock (metric, metres). Colour management, world, and the remaining nine
 workspaces are all factory.
 
-## Rebuilding it
+## Rebuilding it from scratch
+
+Only needed if the committed `.blend` is unusable, for example after a Blender
+version jump that will not open it. Otherwise just install
+[`startup-files/default.blend`](../startup-files/default.blend).
 
 1. Start Blender, delete the default cube, camera and light.
 2. Add the collections `Working`, `Final`, `Scale Reference`.
