@@ -1,0 +1,139 @@
+====================================================================================================
+USER-ADDED KEYMAP ITEMS (5)
+====================================================================================================
+  [ADD] Mesh                   | Q                              -> wm.tool_set_by_id  {"name": "mesh_tool.select_box_xray"}
+        factory: <not found by id>
+  [ADD] Object Mode            | Q                              -> wm.tool_set_by_id  {"name": "object_tool.select_box_xray"}
+        factory: <not found by id>
+  [ADD] Window                 | D                              -> wm.context_toggle  {"data_path": "scene.tool_settings.use_transform_data_origin"}
+        factory: <not found by id>
+  [ADD] Window                 | FOUR                           -> wm.context_menu_enum  {"data_path": "space_data.shading.color_type"}
+        factory: <not found by id>
+  [ADD] Window                 | Ctrl+TWO                       -> wm.context_toggle  {"data_path": "space_data.overlay.show_wireframes"}
+        factory: <not found by id>
+
+====================================================================================================
+MODIFIED DEFAULT ITEMS (26)
+====================================================================================================
+  [MOD] 3D View                | F                              -> view3d.view_selected
+        factory: NUMPAD_PERIOD                  -> view3d.view_selected
+  [MOD] 3D View                | Ctrl+ONE                       -> view3d.localview  {"frame_selected": false}
+        factory: NUMPAD_SLASH                   -> view3d.localview
+  [MOD] Armature               | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_armature_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_armature_context_menu"}
+  [MOD] Curve                  | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_curve_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_curve_context_menu"}
+  [MOD] Curves                 | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_curves_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_curves_context_menu"}
+  [MOD] Font                   | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_font_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_font_context_menu"}
+  [MOD] Grease Pencil Draw Mode | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_draw_context_menu"}
+        factory: Shift+SPACE                    -> wm.call_asset_shelf_popover  {"name": "VIEW3D_AST_brush_gpencil_paint"}
+  [MOD] Grease Pencil Edit Mode | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_greasepencil_edit_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_greasepencil_edit_context_menu"}
+  [MOD] Grease Pencil Sculpt Mode | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_sculpt_context_menu"}
+        factory: Shift+SPACE                    -> wm.call_asset_shelf_popover  {"name": "VIEW3D_AST_brush_gpencil_sculpt"}
+  [MOD] Grease Pencil Vertex Paint | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_vertex_paint_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_vertex_paint_context_menu"}
+  [MOD] Grease Pencil Weight Paint | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_weight_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_greasepencil_weight_context_menu"}
+  [MOD] Image Paint            | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_paint_texture_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_paint_texture_context_menu"}
+  [MOD] Lattice                | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_lattice_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_lattice_context_menu"}
+  [MOD] Mesh                   | Ctrl+E                         -> view3d.edit_mesh_extrude_move_normal
+        factory: E                              -> view3d.edit_mesh_extrude_move_normal
+  [MOD] Mesh                   | Shift+E                        -> wm.call_menu  {"name": "VIEW3D_MT_edit_mesh_edges"}
+        factory: Ctrl+E                         -> wm.call_menu  {"name": "VIEW3D_MT_edit_mesh_edges"}
+  [MOD] Mesh                   | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_mesh_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_mesh_context_menu"}
+  [MOD] Metaball               | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_edit_metaball_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_edit_metaball_context_menu"}
+  [MOD] Object Mode            | ONE                            -> object.subdivision_set  {"level": 0, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+ZERO                      -> object.subdivision_set  {"level": 0, "relative": false, "ensure_modifier": true}
+  [MOD] Object Mode            | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_object_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_object_context_menu"}
+  [MOD] Object Mode            | THREE                          -> object.subdivision_set  {"level": 2, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+TWO                       -> object.subdivision_set  {"level": 2, "relative": false, "ensure_modifier": true}
+  [MOD] Object Mode            | X                              -> object.delete  {"use_global": false, "confirm": false}
+        factory: X                              -> object.delete  {"use_global": false}
+  [MOD] Particle               | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_particle_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_particle_context_menu"}
+  [MOD] Pose                   | RIGHTMOUSE (CLICK)             -> wm.call_menu  {"name": "VIEW3D_MT_pose_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_menu  {"name": "VIEW3D_MT_pose_context_menu"}
+  [MOD] Sculpt                 | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_sculpt_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_sculpt_context_menu"}
+  [MOD] Vertex Paint           | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_paint_vertex_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_paint_vertex_context_menu"}
+  [MOD] Weight Paint           | RIGHTMOUSE (CLICK)             -> wm.call_panel  {"name": "VIEW3D_PT_paint_weight_context_menu"}
+        factory: RIGHTMOUSE                     -> wm.call_panel  {"name": "VIEW3D_PT_paint_weight_context_menu"}
+
+====================================================================================================
+DISABLED ITEMS (33)
+====================================================================================================
+  [OFF] 3D View                | W                              -> wm.tool_set_by_id  {"name": "builtin.select_box", "cycle": true}
+        factory: W                              -> wm.tool_set_by_id  {"name": "builtin.select_box", "cycle": true}
+  [OFF] Armature               | E                              -> armature.extrude_move  {"ARMATURE_OT_extrude": {"forked": false}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+        factory: E                              -> armature.extrude_move  {"ARMATURE_OT_extrude": {"forked": false}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+  [OFF] Armature               | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Curve                  | E                              -> curve.extrude_move  {"CURVE_OT_extrude": {"mode": "TRANSLATION"}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+        factory: E                              -> curve.extrude_move  {"CURVE_OT_extrude": {"mode": "TRANSLATION"}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+  [OFF] Curve                  | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Curves                 | E                              -> curves.extrude_move  {"CURVES_OT_extrude": {}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+        factory: E                              -> curves.extrude_move  {"CURVES_OT_extrude": {}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+  [OFF] Curves                 | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Grease Pencil Edit Mode | E                              -> grease_pencil.extrude_move  {"GREASE_PENCIL_OT_extrude": {}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+        factory: E                              -> grease_pencil.extrude_move  {"GREASE_PENCIL_OT_extrude": {}, "TRANSFORM_OT_translate": {"value": [0.0, 0.0, 0.0], "orient_type": "GLOBAL", "orient_matrix": ["<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>", "<Vector (0.0000, 0.0000, 0.0000)>"], "orient_matrix_type": "GLOBAL", "constraint_axis": [false, false, false], "mirror": false, "use_proportional_edit": false, "proportional_edit_falloff": "SMOOTH", "proportional_size": 1.0, "use_proportional_connected": false, "use_proportional_projected": false, "snap": false, "snap_elements": ["INCREMENT"], "use_snap_project": false, "snap_target": "CLOSEST", "use_snap_self": true, "use_snap_edit": true, "use_snap_nonedit": true, "use_snap_selectable": false, "snap_point": [0.0, 0.0, 0.0], "snap_align": false, "snap_normal": [0.0, 0.0, 0.0], "gpencil_strokes": false, "cursor_transform": false, "texture_space": false, "remove_on_cancel": false, "use_duplicated_keyframes": false, "view2d_edge_pan": false, "release_confirm": false, "use_accurate": false, "use_automerge_and_split": false, "translate_origin": false}}
+  [OFF] Grease Pencil Edit Mode | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Lattice                | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Mesh                   | E                              -> wm.tool_set_by_id  {"name": "builtin.rotate"}
+        factory: <not found by id>
+  [OFF] Mesh                   | F                              -> mesh.edge_face_add
+        factory: F                              -> mesh.edge_face_add
+  [OFF] Mesh                   | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Mesh                   | R                              -> wm.tool_set_by_id  {"name": "builtin.scale"}
+        factory: <not found by id>
+  [OFF] Mesh                   | W                              -> wm.tool_set_by_id  {"name": "builtin.move"}
+        factory: <not found by id>
+  [OFF] Metaball               | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Object Mode            | E                              -> wm.tool_set_by_id  {"name": "builtin.rotate"}
+        factory: <not found by id>
+  [OFF] Object Mode            | Ctrl+FIVE                      -> object.subdivision_set  {"level": 5, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+FIVE                      -> object.subdivision_set  {"level": 5, "relative": false, "ensure_modifier": true}
+  [OFF] Object Mode            | Ctrl+FOUR                      -> object.subdivision_set  {"level": 4, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+FOUR                      -> object.subdivision_set  {"level": 4, "relative": false, "ensure_modifier": true}
+  [OFF] Object Mode            | Ctrl+ONE                       -> object.subdivision_set  {"level": 1, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+ONE                       -> object.subdivision_set  {"level": 1, "relative": false, "ensure_modifier": true}
+  [OFF] Object Mode            | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Object Mode            | R                              -> wm.tool_set_by_id  {"name": "builtin.scale"}
+        factory: <not found by id>
+  [OFF] Object Mode            | Ctrl+THREE                     -> object.subdivision_set  {"level": 3, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+THREE                     -> object.subdivision_set  {"level": 3, "relative": false, "ensure_modifier": true}
+  [OFF] Object Mode            | W                              -> wm.tool_set_by_id  {"name": "builtin.move"}
+        factory: <not found by id>
+  [OFF] Point Cloud            | R                              -> transform.rotate
+        factory: R                              -> transform.rotate
+  [OFF] Sculpt                 | Ctrl+FIVE                      -> object.subdivision_set  {"level": 5, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+FIVE                      -> object.subdivision_set  {"level": 5, "relative": false, "ensure_modifier": true}
+  [OFF] Sculpt                 | Ctrl+FOUR                      -> object.subdivision_set  {"level": 4, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+FOUR                      -> object.subdivision_set  {"level": 4, "relative": false, "ensure_modifier": true}
+  [OFF] Sculpt                 | Ctrl+ONE                       -> object.subdivision_set  {"level": 1, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+ONE                       -> object.subdivision_set  {"level": 1, "relative": false, "ensure_modifier": true}
+  [OFF] Sculpt                 | Alt+ONE                        -> object.subdivision_set  {"level": -1, "relative": true, "ensure_modifier": false}
+        factory: Alt+ONE                        -> object.subdivision_set  {"level": -1, "relative": true, "ensure_modifier": false}
+  [OFF] Sculpt                 | Ctrl+THREE                     -> object.subdivision_set  {"level": 3, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+THREE                     -> object.subdivision_set  {"level": 3, "relative": false, "ensure_modifier": true}
+  [OFF] Sculpt                 | Ctrl+TWO                       -> object.subdivision_set  {"level": 2, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+TWO                       -> object.subdivision_set  {"level": 2, "relative": false, "ensure_modifier": true}
+  [OFF] Sculpt                 | Alt+TWO                        -> object.subdivision_set  {"level": 1, "relative": true, "ensure_modifier": false}
+        factory: Alt+TWO                        -> object.subdivision_set  {"level": 1, "relative": true, "ensure_modifier": false}
+  [OFF] Sculpt                 | Ctrl+ZERO                      -> object.subdivision_set  {"level": 0, "relative": false, "ensure_modifier": true}
+        factory: Ctrl+ZERO                      -> object.subdivision_set  {"level": 0, "relative": false, "ensure_modifier": true}

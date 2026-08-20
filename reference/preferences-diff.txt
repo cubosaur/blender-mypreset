@@ -1,0 +1,110 @@
+========================================================================================================
+PREFERENCE DIFFS  (18)   [ path | FACTORY | YOURS ]
+========================================================================================================
+view.color_picker_type                                     "CIRCLE_HSV"         -> "CIRCLE_HSL"
+view.gizmo_size                                            75                   -> 100
+view.mini_axis_brightness                                  8                    -> 10
+view.mini_axis_type                                        "GIZMO"              -> "MINIMAL"
+view.show_addons_enabled_only                              false                -> true
+view.show_area_handle                                      false                -> true
+view.show_number_arrows                                    false                -> true
+view.show_splash                                           true                 -> false
+view.show_tooltips_python                                  false                -> true
+view.ui_scale                                              1.0                  -> 1.15
+view.use_text_render_subpixelaa                            false                -> true
+edit.undo_steps                                            32                   -> 128
+inputs.navigation_mode                                     "WALK"               -> "FLY"
+system.dpi                                                 72                   -> 124
+system.gpu_backend                                         "OPENGL"             -> "VULKAN"
+system.register_all_users                                  false                -> true
+system.ui_scale                                            0.0                  -> 1.722222
+system.use_online_access                                   false                -> true
+
+========================================================================================================
+ADDONS ENABLED
+========================================================================================================
+ + bl_ext.blender_org.xray_selection_tools
+ + bl_ext.user_default.easy_transform_axis_switch
+        bl_idname                                      "<absent>"         -> "\u0006"
+        keep_custom_orientations                       "<absent>"         -> true
+        orientation                                    "<absent>"         -> "GLOBAL"
+        overrides                                      "<absent>"         -> "Object Mode|-67|wm.tool_set_by_id|W;Object Mode|-68|wm.tool_set_by_id|E;Object Mode|-69|wm.tool_set_by_id|R;Mesh|-101|wm.tool_set_by_id|W;Mesh|-102|wm.tool_set_by_id|E;Mesh|-103|wm.tool_set_by_id|R;Curve|2|transform.rotate|R;Curve|24|curve.extrude_move|E;Curves|2|transform.rotate|R;Curves|14|curves.extrude_move|E;Point Cloud|2|transform.rotate|R;Metaball|2|transform.rotate|R;Lattice|2|transform.rotate|R;Armature|2|transform.rotate|R;Armature|37|armature.extrude_move|E;Grease Pencil Edit Mode|18|transform.rotate|R;Grease Pencil Edit Mode|36|grease_pencil.extrude_move|E;3D View|115|wm.tool_set_by_id|W"
+        repeat_timeout                                 "<absent>"         -> 0.0
+ + bl_ext.user_default.ez_uv_editor
+ + bl_ext.user_default.remember_last_used_axis
+        bl_idname                                      "<absent>"         -> "\u0006"
+        enable_rmb_transform                           "<absent>"         -> true
+        keymap_backup                                  "<absent>"         -> "{\"version\": 1, \"entries\": [{\"km\": \"Weight Paint\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 20, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_paint_weight_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Vertex Paint\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 23, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_paint_vertex_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Grease Pencil Weight Paint\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 18, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_greasepencil_weight_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Pose\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 50, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_pose_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Object Mode\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 57, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_object_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Curve\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 44, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_curve_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Curves\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 33, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_curves_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Image Paint\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 23, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_paint_texture_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Sculpt\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 52, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_sculpt_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Mesh\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 92, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_mesh_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Armature\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 51, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_armature_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Metaball\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 21, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_metaball_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Lattice\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 20, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_lattice_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Particle\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 25, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_particle_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Grease Pencil Edit Mode\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 42, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_greasepencil_edit_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Grease Pencil Draw Mode\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 20, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_greasepencil_draw_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Grease Pencil Sculpt Mode\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 25, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_greasepencil_sculpt_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Grease Pencil Vertex Paint\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 20, \"idname\": \"wm.call_panel\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_PT_greasepencil_vertex_paint_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}, {\"km\": \"Font\", \"space\": \"EMPTY\", \"region\": \"WINDOW\", \"id\": 48, \"idname\": \"wm.call_menu\", \"type\": \"RIGHTMOUSE\", \"shift\": 0, \"ctrl\": 0, \"alt\": 0, \"oskey\": 0, \"any\": false, \"key_modifier\": \"NONE\", \"menu\": \"VIEW3D_MT_edit_font_context_menu\", \"field\": \"value\", \"old\": \"PRESS\", \"new\": \"CLICK\"}]}"
+        legacy_mmb_repaired                            "<absent>"         -> true
+        retime_context_menu                            "<absent>"         -> true
+        theme_backup                                   "<absent>"         -> ""
+        transform_source                               "<absent>"         -> "LAST_USED"
+   bl_pkg
+   cycles
+        compute_device_type                            "NONE"             -> "CUDA"
+        devices                                        "<<collection len=0>>" -> "<<collection len=3>>"
+   io_anim_bvh
+   io_curve_svg
+   io_mesh_uv_layout
+   io_scene_fbx
+   io_scene_gltf2
+ + node_wrangler
+        bl_idname                                      "<absent>"         -> "\u0006"
+        hotkey_list_filter                             "<absent>"         -> ""
+        merge_hide                                     "<absent>"         -> "NON_SHADER"
+        merge_position                                 "<absent>"         -> "CENTER"
+        principled_tags.alpha                          "<absent>"         -> "alpha opacity"
+        principled_tags.ambient_occlusion              "<absent>"         -> "ao ambient occlusion"
+        principled_tags.base_color                     "<absent>"         -> "diffuse diff albedo base col color basecolor"
+        principled_tags.bump                           "<absent>"         -> "bump bmp"
+        principled_tags.displacement                   "<absent>"         -> "displacement displace disp dsp height heightmap"
+        principled_tags.emission                       "<absent>"         -> "emission emissive emit"
+        principled_tags.gloss                          "<absent>"         -> "gloss glossy glossiness"
+        principled_tags.metallic                       "<absent>"         -> "metallic metalness metal mtl"
+        principled_tags.name                           "<absent>"         -> ""
+        principled_tags.normal                         "<absent>"         -> "normal nor nrm nrml norm"
+        principled_tags.rough                          "<absent>"         -> "roughness rough rgh"
+        principled_tags.specular                       "<absent>"         -> "specularity specular spec spc"
+        principled_tags.transmission                   "<absent>"         -> "transmission transparency"
+        show_hotkey_list                               "<absent>"         -> false
+        show_principled_lists                          "<absent>"         -> false
+   pose_library
+
+factory-only addons (you disabled):
+
+theme: Default  | factory: Default
+keyconfig active: Blender | names: ['Blender', 'Blender addon', 'Blender user']
+
+extension repos:
+[
+ {
+  "name": "extensions.blender.org",
+  "module": "blender_org",
+  "directory": "C:\\Users\\Angelo\\AppData\\Roaming\\Blender Foundation\\Blender\\5.1\\extensions\\blender_org",
+  "remote_url": "https://extensions.blender.org/api/v1/extensions/",
+  "enabled": true,
+  "use_remote_url": true,
+  "use_custom_directory": false,
+  "source": "USER"
+ },
+ {
+  "name": "User Default",
+  "module": "user_default",
+  "directory": "C:\\Users\\Angelo\\AppData\\Roaming\\Blender Foundation\\Blender\\5.1\\extensions\\user_default",
+  "remote_url": "",
+  "enabled": true,
+  "use_remote_url": false,
+  "use_custom_directory": false,
+  "source": "USER"
+ },
+ {
+  "name": "System",
+  "module": "system",
+  "directory": "C:\\Program Files\\Blender Foundation\\Blender 5.1\\5.1\\extensions\\system",
+  "remote_url": "",
+  "enabled": true,
+  "use_remote_url": false,
+  "use_custom_directory": false,
+  "source": "SYSTEM"
+ }
+]

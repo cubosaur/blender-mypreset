@@ -1,0 +1,14 @@
+schema_version = "1.0.0"
+
+id = "ez_preset"
+version = "1.0.0"
+name = "EZ Preset"
+tagline = "This Blender setup as an add-on: hotkeys, preferences, theme, Edit Mode isolate"
+maintainer = "Angelo Tsiflas (cubosaur)"
+type = "add-on"
+
+tags = ["3D View", "Modeling", "UV"]
+
+blender_version_min = "4.2.0"
+
+license = ["SPDX:GPL-3.0-or-later"]
