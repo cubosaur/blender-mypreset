@@ -68,8 +68,10 @@ at the cost of being the easiest bindings in the setup to shadow.
 `frame_selected` off is the interesting one: stock Local View reframes the view on
 the isolated object, which loses your camera position. Off, it isolates in place.
 
-Subdivision level 1 is not bound. Levels 0 and 2 on `1` and `3` is what the setup
-actually has — worth deciding whether that is intentional or a leftover.
+**Subdivision is a two-state preview, not a level ladder.** `1` is the
+un-subdivided cage and `3` is the subdivided preview. Level 1 has no binding, and
+levels 3 to 5 are switched off. This is deliberate — the whole subdivision-level
+ladder is unwanted. Do not "complete" the row by binding `2`.
 
 ## 3. Switched off
 
@@ -89,19 +91,29 @@ trade ever stops paying, this is the first row to revisit.
 
 ## 4. Added by this add-on
 
+Applied identically to the **Mesh** and **UV Editor** keymaps, so the keys mean the
+same thing whichever editor the pointer is over.
+
 | Keymap | Key | Operator | Does |
 | --- | --- | --- | --- |
-| Mesh | `Ctrl+1` | `ez_isolate.toggle` | Isolate selection, unsync UVs |
-| Mesh | `Alt+1` | `mesh.select_mode` | Expand to vertex |
-| Mesh | `Alt+2` | `mesh.select_mode` | Expand to edge |
-| Mesh | `Alt+3` | `mesh.select_mode` | Expand to face |
+| Mesh, UV Editor | `Ctrl+1` | `ez_isolate.toggle` | Isolate selection, unsync UVs |
+| Mesh, UV Editor | `Alt+1` | `mesh.select_mode` | Expand to vertex |
+| Mesh, UV Editor | `Alt+2` | `mesh.select_mode` | Expand to edge |
+| Mesh, UV Editor | `Alt+3` | `mesh.select_mode` | Expand to face |
 
-These four live in the **add-on keyconfig**, not the user keyconfig, so disabling
-the add-on removes them cleanly and leaves nothing behind.
+These eight live in the **add-on keyconfig**, not the user keyconfig, so disabling
+the add-on removes them cleanly and leaves nothing behind. The six default
+`Ctrl+1/2/3` expand bindings they displace — three in each keymap — are switched
+off in the user keyconfig and switched back on by Restore.
 
-`Ctrl+Shift+1/2/3` (extend *and* expand) is untouched. It collides with nothing,
-so there was no reason to move it — which does leave expand on `Alt` and
-extend-and-expand on `Ctrl+Shift`. A deliberate asymmetry, not an oversight.
+`Ctrl+Shift+1/2/3` (extend *and* expand) is untouched in both keymaps. It collides
+with nothing, so there was no reason to move it — which does leave expand on `Alt`
+and extend-and-expand on `Ctrl+Shift`. A deliberate asymmetry, not an oversight.
+
+`Ctrl+2` and `Ctrl+3` over the UV Editor now do nothing. `Ctrl+2` falls through to
+the Window keymap's wireframe-overlay toggle, whose data path does not resolve on
+an Image Editor space, so `wm.context_toggle` returns `PASS_THROUGH` and no error
+is shown. `Ctrl+3` is unbound. Both are quiet, not broken.
 
 See [edit-mode-isolate.md](edit-mode-isolate.md) for how the toggle works.
 
@@ -148,11 +160,15 @@ need them.
 
 ---
 
-## Unresolved
+## Verifying which keymap wins
 
-- **`2` in Object Mode.** Subdivision moved to `1` (level 0) and `3` (level 2).
-  Level 1 has no binding. Either bind `2` → level 1, or accept the gap.
-- **`Ctrl+1/2/3` in the UV Editor** still means select-mode expand, while the 3D
-  viewport now uses `Alt+1/2/3`. Same operators, two different modifiers depending
-  on which editor the cursor is over. Left alone because the request was scoped to
-  the viewport, but it is inconsistent.
+Priority is invisible in the Preferences UI, and guessing it wastes time. This
+prints every binding for a key in priority order and marks the winner:
+
+```bash
+blender --background --python tools/diag_hotkey.py
+```
+
+It is how the `Ctrl+2`-in-Edit-Mode problem was confirmed, and how the UV Editor
+parity was checked afterwards. Use it before assuming a hotkey is broken — the
+answer is usually a higher-priority keymap, not a bug in the binding.

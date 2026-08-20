@@ -7,6 +7,11 @@ on Ctrl+1, and the select-mode expand row relocated to Alt+1/2/3 -- go into
 ``keyconfigs.addon``. Blender merges that into the active keymap and, crucially,
 throws it away again on unregister, so uninstalling leaves no trace.
 
+Both the **Mesh** and **UV Editor** keymaps get these bindings. The two keymaps
+carry the same three Ctrl+1/2/3 expand defaults, so treating only one of them
+leaves the hotkeys meaning different things depending on which editor the pointer
+happens to be over.
+
 *User keyconfig.* The profile's own edits (moving F to Frame Selected, switching
 off the Sculpt subdivision row, and so on) have to be written into
 ``keyconfigs.user``, because that is where Blender keeps a keymap diff and where
@@ -26,8 +31,12 @@ import bpy
 from . import profile
 from .ops_isolate import EZISO_OT_toggle
 
-MESH_KEYMAP = "Mesh"
 ISOLATE_KEY = "ONE"
+
+# Keymaps this add-on owns bindings in. Both get the same treatment, because the
+# same three Ctrl+1/2/3 expand bindings exist in both and the hotkeys must mean
+# the same thing whichever editor the pointer is over.
+OWNED_KEYMAPS = ("Mesh", "UV Editor")
 
 # (key, select-mode) for the expand bindings the isolate hotkey displaces.
 EXPAND_BINDINGS = (
@@ -126,11 +135,14 @@ def _clear_addon_items():
     # Sweep strays left behind by a script reload.
     keyconfigs = _keyconfigs()
     addon_kc = keyconfigs.addon if keyconfigs else None
-    km = addon_kc.keymaps.get(MESH_KEYMAP) if addon_kc else None
-    if km is None:
+    if addon_kc is None:
         return
-    for kmi in [i for i in km.keymap_items if _owned(i)]:
-        km.keymap_items.remove(kmi)
+    for km_name in OWNED_KEYMAPS:
+        km = addon_kc.keymaps.get(km_name)
+        if km is None:
+            continue
+        for kmi in [i for i in km.keymap_items if _owned(i)]:
+            km.keymap_items.remove(kmi)
 
 
 def _add_addon_items():
@@ -138,18 +150,20 @@ def _add_addon_items():
     addon_kc = keyconfigs.addon if keyconfigs else None
     if addon_kc is None:
         return
-    km = addon_kc.keymaps.new(name=MESH_KEYMAP, space_type="EMPTY",
-                              region_type="WINDOW")
+    for km_name in OWNED_KEYMAPS:
+        km = addon_kc.keymaps.new(name=km_name, space_type="EMPTY",
+                                  region_type="WINDOW")
 
-    kmi = km.keymap_items.new(EZISO_OT_toggle.bl_idname, ISOLATE_KEY, "PRESS",
-                              ctrl=True)
-    _addon_keymaps.append((km, kmi))
-
-    for key, mode in EXPAND_BINDINGS:
-        kmi = km.keymap_items.new("mesh.select_mode", key, "PRESS", alt=True)
-        kmi.properties.type = mode
-        kmi.properties.use_expand = True
+        kmi = km.keymap_items.new(EZISO_OT_toggle.bl_idname, ISOLATE_KEY,
+                                  "PRESS", ctrl=True)
         _addon_keymaps.append((km, kmi))
+
+        for key, mode in EXPAND_BINDINGS:
+            kmi = km.keymap_items.new("mesh.select_mode", key, "PRESS",
+                                      alt=True)
+            kmi.properties.type = mode
+            kmi.properties.use_expand = True
+            _addon_keymaps.append((km, kmi))
 
 
 # ---------------------------------------------------------------------------
@@ -174,13 +188,14 @@ def _is_expand_conflict(kmi):
 
 
 def _disable_expand_conflicts(record):
-    km = _user_keymap(MESH_KEYMAP)
-    if km is None:
-        return
-    for kmi in km.keymap_items:
-        if kmi.active and _is_expand_conflict(kmi):
-            kmi.active = False
-            record.append((MESH_KEYMAP, kmi.id))
+    for km_name in OWNED_KEYMAPS:
+        km = _user_keymap(km_name)
+        if km is None:
+            continue
+        for kmi in km.keymap_items:
+            if kmi.active and _is_expand_conflict(kmi):
+                kmi.active = False
+                record.append((km_name, kmi.id))
 
 
 # ---------------------------------------------------------------------------
@@ -273,8 +288,10 @@ def restore_profile_keymaps():
         if kmi is not None:
             kmi.active = True
 
-    km = _user_keymap(MESH_KEYMAP)
-    if km is not None:
+    for km_name in OWNED_KEYMAPS:
+        km = _user_keymap(km_name)
+        if km is None:
+            continue
         for kmi in km.keymap_items:
             if not kmi.active and _is_expand_conflict(kmi):
                 kmi.active = True

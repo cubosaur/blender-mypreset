@@ -125,13 +125,31 @@ sub = [k for k in sculpt_km.keymap_items if k.idname == "object.subdivision_set"
 check("Sculpt subdivision row disabled (%d items)" % len(sub), sub and all(not k.active for k in sub))
 
 addon_kc = bpy.context.window_manager.keyconfigs.addon
-akm = addon_kc.keymaps.get("Mesh") if addon_kc else None
-own = [k for k in akm.keymap_items] if akm else []
-check("addon keyconfig: Ctrl+1 isolate present",
-      any(k.idname == "ez_isolate.toggle" and k.type == "ONE" and k.ctrl for k in own))
-alt_expand = [k for k in own if k.idname == "mesh.select_mode" and k.alt]
-check("addon keyconfig: Alt+1/2/3 expand present (3)", len(alt_expand) == 3,
-      [(k.type, k.properties.type, k.properties.use_expand) for k in alt_expand])
+
+# Hotkey parity: Mesh and UV Editor must get identical treatment.
+for km_name in ("Mesh", "UV Editor"):
+    akm = addon_kc.keymaps.get(km_name) if addon_kc else None
+    own = [k for k in akm.keymap_items] if akm else []
+    check("%s addon keyconfig: Ctrl+1 isolate present" % km_name,
+          any(k.idname == "ez_isolate.toggle" and k.type == "ONE" and k.ctrl
+              for k in own))
+    alt_expand = [k for k in own if k.idname == "mesh.select_mode" and k.alt]
+    check("%s addon keyconfig: Alt+1/2/3 expand present (3)" % km_name,
+          len(alt_expand) == 3,
+          [(k.type, k.properties.type, k.properties.use_expand)
+           for k in alt_expand])
+
+uv_km = user.keymaps.get("UV Editor")
+uv_expand = [k for k in uv_km.keymap_items
+             if k.idname == "mesh.select_mode" and k.ctrl and not k.shift
+             and k.type in ("ONE", "TWO", "THREE")]
+check("UV Editor Ctrl+1/2/3 expand all inactive",
+      uv_expand and all(not k.active for k in uv_expand),
+      [(k.type, k.active) for k in uv_expand])
+uv_cs = [k for k in uv_km.keymap_items
+         if k.idname == "mesh.select_mode" and k.ctrl and k.shift]
+check("UV Editor Ctrl+Shift+1/2/3 left active",
+      uv_cs and all(k.active for k in uv_cs))
 
 print()
 print("=" * 78)
@@ -244,10 +262,13 @@ check("object.delete confirm back to True",
 mesh_km = user.keymaps.get("Mesh")
 mesh_f = [k for k in mesh_km.keymap_items if k.idname == "mesh.edge_face_add" and k.type == "F"]
 check("Mesh F re-enabled", mesh_f and all(k.active for k in mesh_f))
-expand = [k for k in mesh_km.keymap_items
-          if k.idname == "mesh.select_mode" and k.ctrl and not k.shift
-          and k.type in ("ONE", "TWO", "THREE")]
-check("Ctrl+1/2/3 expand re-enabled", expand and all(k.active for k in expand))
+for km_name in ("Mesh", "UV Editor"):
+    km = user.keymaps.get(km_name)
+    expand = [k for k in km.keymap_items
+              if k.idname == "mesh.select_mode" and k.ctrl and not k.shift
+              and k.type in ("ONE", "TWO", "THREE")]
+    check("%s Ctrl+1/2/3 expand re-enabled" % km_name,
+          expand and all(k.active for k in expand))
 check("Window Ctrl+2 add removed",
       find("Window", "wm.context_toggle", type="TWO", ctrl=True,
            properties={"data_path": "space_data.overlay.show_wireframes"}) is None)

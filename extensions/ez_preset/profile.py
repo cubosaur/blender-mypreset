@@ -135,14 +135,17 @@ KEYMAP_REBIND = (
                     properties={"name": "VIEW3D_MT_edit_mesh_edges"}),
          to=dict(type="E", shift=True),
          note="Edge menu moves to Shift+E to make room for extrude"),
+    # Two subdivision keys on purpose, not five. 1 is the un-subdivided cage and
+    # 3 is the subdivided preview -- a two-state preview toggle rather than a
+    # level ladder. Level 1 is deliberately unbound; do not "complete" this row.
     dict(keymap="Object Mode", idname="object.subdivision_set",
          match=dict(type="ZERO", ctrl=True, properties={"level": 0}),
          to=dict(type="ONE"),
-         note="Subdivision level 0 on plain 1"),
+         note="Subdivision preview off, on plain 1"),
     dict(keymap="Object Mode", idname="object.subdivision_set",
          match=dict(type="TWO", ctrl=True, properties={"level": 2}),
          to=dict(type="THREE"),
-         note="Subdivision level 2 on plain 3"),
+         note="Subdivision preview on, on plain 3"),
     dict(keymap="Object Mode", idname="object.delete",
          match=dict(type="X", properties={"confirm": True}),
          to=dict(type="X", properties={"confirm": False}),

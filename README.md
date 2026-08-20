@@ -73,20 +73,24 @@ Changes I made by hand. `~` marks a binding moved off its default key.
 | Key | Does | Default was |
 | --- | --- | --- |
 | `Q` | X-Ray box select tool | Added |
-| `1` | Subdivision level 0 | ~ `Ctrl+0` |
-| `3` | Subdivision level 2 | ~ `Ctrl+2` |
+| `1` | Subdivision preview off | ~ `Ctrl+0` |
+| `3` | Subdivision preview on | ~ `Ctrl+2` |
 | `X` | Delete, no confirmation popup | `X` with popup |
 | `W` `E` `R` | Move / Rotate / Scale | via add-on |
 
-### Edit Mode (Mesh keymap)
+Subdivision is a two-state preview, not a level ladder. `2` is unbound on purpose.
+
+### Edit Mode and UV Editor
+
+The same keys, in both the Mesh and UV Editor keymaps.
 
 | Key | Does | Default was |
 | --- | --- | --- |
-| `Q` | X-Ray box select tool | Added |
 | `Ctrl+1` | **Isolate selection + unsync UVs** | ~ `mesh.select_mode` expand |
 | `Alt+1/2/3` | Expand select mode to vert / edge / face | ~ `Ctrl+1/2/3` |
-| `Ctrl+E` | Extrude along normals | ~ `E` |
-| `Shift+E` | Edge menu | ~ `Ctrl+E` |
+| `Q` | X-Ray box select tool (Mesh only) | Added |
+| `Ctrl+E` | Extrude along normals (Mesh only) | ~ `E` |
+| `Shift+E` | Edge menu (Mesh only) | ~ `Ctrl+E` |
 | `W` `E` `R` | Move / Rotate / Scale | via add-on |
 
 ### Switched off on purpose
@@ -94,7 +98,8 @@ Changes I made by hand. `~` marks a binding moved off its default key.
 | Key | Was | Why |
 | --- | --- | --- |
 | `F` (Edit Mode) | Make Edge/Face | `F` is Frame Selected everywhere. A real trade-off — see [docs/keymap.md](docs/keymap.md). |
-| `Ctrl+1/3/4/5` (Object Mode) | Subdivision levels | `Ctrl+1` is Isolate; the rest moved to plain `1`/`3` |
+| `Ctrl+1/2/3` (Mesh, UV Editor) | Select-mode expand | Moved to `Alt+1/2/3` to free `Ctrl+1` for Isolate |
+| `Ctrl+1/3/4/5` (Object Mode) | Subdivision levels | `Ctrl+1` is Isolate; the ladder is unwanted |
 | `Ctrl+0…5`, `Alt+1/2` (Sculpt) | Subdivision levels | Frees `Ctrl+1` and `Ctrl+2` in Sculpt Mode |
 
 **Why disabling matters:** mode keymaps (`Mesh`, `Object Mode`, `Sculpt`) outrank
@@ -102,6 +107,14 @@ the `3D View` keymap, which outranks `Window`. A live binding in a higher-priori
 keymap silently shadows a lower one. Every entry above exists because of that
 ordering, not out of tidiness — `Ctrl+2` for the wireframe overlay genuinely did
 not fire in Edit Mode until the `Ctrl+2` expand binding moved to `Alt+2`.
+
+Priority is invisible in the Preferences UI, so there is a tool for it:
+
+```bash
+blender --background --python tools/diag_hotkey.py
+```
+
+It prints every keymap that claims a key, in priority order, and marks the winner.
 
 Full tables, including the 37 bindings my add-ons rewrite rather than me:
 **[docs/keymap.md](docs/keymap.md)**.
@@ -149,8 +162,9 @@ Everything in `docs/` came out of these, not out of clicking through Preferences
 blender --background --python tools/dump_config.py
 ```
 
-`tools/` also holds `diff_keymap.py`, `diff_prefs.py`, and `test_ez_preset.py` —
-41 assertions covering the profile round-trip and the isolate toggle:
+`tools/` also holds `diff_keymap.py`, `diff_prefs.py`, `diag_hotkey.py`, and
+`test_ez_preset.py` — 54 assertions covering the profile round-trip and the
+isolate toggle:
 
 ```bash
 blender --background --factory-startup --python tools/test_ez_preset.py

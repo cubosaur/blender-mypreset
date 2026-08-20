@@ -22,9 +22,9 @@ Or drop the folder into:
 | | |
 | --- | --- |
 | **Preferences** | 15 values, plus 2 keyconfig preferences and 1 add-on preference |
-| **Keymap** | 5 bindings added, 7 moved, 13 switched off |
+| **Keymap** | 5 bindings added, 7 moved, 13 switched off, plus 6 expand bindings relocated to Alt |
 | **Theme** | Loads Professional, if that theme extension is installed |
-| **Feature** | `Ctrl+1` isolate in Edit Mode; expand moves to `Alt+1/2/3` |
+| **Feature** | `Ctrl+1` isolate in Edit Mode and the UV Editor; expand moves to `Alt+1/2/3` in both |
 
 Everything it changes is one table in [`profile.py`](profile.py). Adding a
 preference to the profile is one line there and nothing anywhere else.
@@ -77,15 +77,17 @@ this at the top; do not reorder those calls.
 blender --background --factory-startup --python ../../tools/test_ez_preset.py
 ```
 
-41 assertions: profile apply, every keymap edit, the isolate round trip including
-preservation of hand-hidden geometry, the empty-selection refusal, and a full
-restore back to factory.
+54 assertions: profile apply, every keymap edit in both the Mesh and UV Editor
+keymaps, the isolate round trip including preservation of hand-hidden geometry,
+the empty-selection refusal, and a full restore back to factory.
 
 ## Notes
 
-- `Ctrl+Shift+1/2/3` (extend and expand) is left on `Ctrl`, since it collides with
-  nothing. Expand therefore sits on `Alt` while extend-and-expand sits on
-  `Ctrl+Shift` — deliberate, not an oversight.
-- The UV Editor keymap still uses `Ctrl+1/2/3` for expand. Only the 3D viewport
-  moved.
+- `Ctrl+Shift+1/2/3` (extend and expand) is left on `Ctrl` in both keymaps, since
+  it collides with nothing. Expand therefore sits on `Alt` while extend-and-expand
+  sits on `Ctrl+Shift` — deliberate, not an oversight.
+- `Ctrl+2` and `Ctrl+3` over the UV Editor do nothing. `Ctrl+2` falls through to
+  the Window wireframe toggle, whose data path does not resolve on an Image Editor
+  space, so it returns `PASS_THROUGH` with no error. `Ctrl+3` is unbound.
 - `system.gpu_backend = VULKAN` needs a Blender restart to take effect.
+- Use `tools/diag_hotkey.py` to see which keymap actually wins a key.

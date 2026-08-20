@@ -29,6 +29,10 @@ remembers which state you were in needs code.
 holds Local View, so a new binding on `Ctrl+1` would never have been reached. That
 expand row moved to `Alt+1/2/3` — see [keymap.md](keymap.md).
 
+The **UV Editor** keymap carries the same three expand defaults, and gets the same
+treatment. `Ctrl+1` therefore isolates whether the pointer is over the 3D viewport
+or the UV Editor, and `Alt+1/2/3` expands in both.
+
 ## Reversing exactly, not approximately
 
 The obvious implementation is `mesh.hide(unselected=True)` on the way in and
@@ -119,5 +123,6 @@ hidden:
 blender --background --factory-startup --python tools/test_ez_preset.py
 ```
 
-41 assertions, covering the isolate round trip, the empty-selection refusal, the
-Object Mode poll, and the full profile apply/restore cycle.
+54 assertions, covering the isolate round trip, the empty-selection refusal, the
+Object Mode poll, the Mesh and UV Editor bindings, and the full profile
+apply/restore cycle.
